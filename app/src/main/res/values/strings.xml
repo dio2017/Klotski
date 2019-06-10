@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Klotski</string>
+    <string name="startgame">开 始 游 戏</string>
+    <string name="choosestage">选择关卡</string>
+    <string name="setting">游戏设置</string>
+    <string name="aboutgame">关于游戏</string>
+</resources>
