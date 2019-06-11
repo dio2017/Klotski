@@ -135,7 +135,6 @@ public class Klotski extends SurfaceView implements SurfaceHolder.Callback {
                 touchedId = getTouchedBlock((int) mDownX, (int) mDownY);
                 break;
             case MotionEvent.ACTION_UP:
-//                L.i(this, "ACTION_UP");
                 if (touchedId == -1) {
                     break;
                 }
@@ -146,10 +145,9 @@ public class Klotski extends SurfaceView implements SurfaceHolder.Callback {
                 //判断是否结束
                 if (touchedId==1 && newTop==765 && newLeft==255) {
                     //游戏结束！
-//                    L.i(this, "Game over!");
-                    MainActivity.levels[currentLevel -1]=true;
+                    MainActivity.levels[currentLevel -1]="1";
                     AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                    builder.setTitle("哈哈哈").setMessage("闯关成功！").setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                    builder.setTitle("恭喜完成本次冒险！").setMessage("获得神秘碎片 x 1!").setPositiveButton("ok", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                         }
@@ -203,7 +201,6 @@ public class Klotski extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-//        L.i(this, "surfaceChanged");
         updateBlocks();
     }
 

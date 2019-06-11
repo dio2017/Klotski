@@ -49,6 +49,12 @@ public class ChooseLevelActivity extends AppCompatActivity {
         finish();
     }
 
+    public void goCollection(View view) {
+        Intent intent = new Intent();
+        intent.setClass(ChooseLevelActivity.this, CollectionActivity.class);
+        startActivity(intent);
+    }
+
     public void goLevel1(View view) {
         Intent intent = new Intent();
         intent.setClass(ChooseLevelActivity.this, Level1.class);

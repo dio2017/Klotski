@@ -12,7 +12,7 @@ import android.widget.TextView;
 import java.util.logging.Level;
 
 public class MainActivity extends AppCompatActivity {
-    public static boolean levels[] = {false,false,false};
+    public static String levels[] = {"0","0","0"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
