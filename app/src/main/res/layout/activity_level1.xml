@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/level1bg"
+    android:padding="10dp"
+    tools:context=".Level1">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="425dp"
+        android:background="#4DFFFFFF">
+
+        <com.example.android.klotski.Klotski
+            android:id="@+id/klotski1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            app:blockDrawable1x1="@mipmap/dog1x1"
+            app:blockDrawable1x2a="@mipmap/s1x2"
+            app:blockDrawable1x2b="@mipmap/fly1x2"
+            app:blockDrawable1x2c="@mipmap/hat1x2"
+            app:blockDrawable1x2d="@mipmap/g1x2"
+            app:blockDrawable2x1a="@mipmap/bw2x1"
+            app:blockDrawable2x2="@mipmap/rick2x2"
+            app:blockSpacing="3dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </android.support.constraint.ConstraintLayout>
+
+
+    <Button
+        android:id="@+id/back_btn"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="11dp"
+        android:layout_marginLeft="11dp"
+        android:layout_marginBottom="11dp"
+        android:background="@drawable/back"
+        android:onClick="back" />
+
+</RelativeLayout>
