@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="@drawable/mainbg">
+    android:background="@drawable/mainbg"
+    tools:context=".MainActivity">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -41,54 +41,5 @@
 
         </android.support.v7.widget.CardView>
 
-        <!--<android.support.v7.widget.CardView-->
-        <!--style="@style/MenuCard"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--app:cardBackgroundColor="#CCA5D63F"-->
-        <!--app:cardCornerRadius="10dp">-->
-
-        <!--<TextView-->
-        <!--android:id="@+id/txt_choosestage"-->
-        <!--style="@style/MenuItem"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:gravity="center"-->
-        <!--android:text="@string/choosestage" />-->
-        <!--</android.support.v7.widget.CardView>-->
-
-        <!--<android.support.v7.widget.CardView-->
-        <!--style="@style/MenuCard"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--app:cardBackgroundColor="#CC43CF7C"-->
-        <!--app:cardCornerRadius="10dp">-->
-
-        <!--<TextView-->
-        <!--android:id="@+id/txt_setting"-->
-        <!--style="@style/MenuItem"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:gravity="center"-->
-        <!--android:text="@string/setting" />-->
-        <!--</android.support.v7.widget.CardView>-->
-
-        <!--<android.support.v7.widget.CardView-->
-        <!--style="@style/MenuCard"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--app:cardBackgroundColor="#CC00BAAD"-->
-        <!--app:cardCornerRadius="10dp">-->
-
-        <!--<TextView-->
-        <!--android:id="@+id/txt_aboutgame"-->
-        <!--style="@style/MenuItem"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:gravity="center"-->
-        <!--android:text="@string/aboutgame" />-->
-        <!--</android.support.v7.widget.CardView>-->
     </LinearLayout>
-
-
 </android.support.constraint.ConstraintLayout>

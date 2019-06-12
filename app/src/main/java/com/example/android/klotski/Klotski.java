@@ -30,9 +30,7 @@ public class Klotski extends SurfaceView implements SurfaceHolder.Callback {
     private SurfaceHolder mSurfaceHolder;
     private DrawThread mDrawThread;
 
-    private int[][] map = new int[5][4];
-
-    private List<Piece> mBlocks;
+    private List<Piece> mPieces;
 
     private Rect mRect;
     private int mCellWidth;
@@ -129,7 +127,6 @@ public class Klotski extends SurfaceView implements SurfaceHolder.Callback {
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-//                L.i(this, "ACTION_DOWN");
                 mDownX = event.getX();
                 mDownY = event.getY();
                 touchedId = getTouchedBlock((int) mDownX, (int) mDownY);
@@ -138,7 +135,7 @@ public class Klotski extends SurfaceView implements SurfaceHolder.Callback {
                 if (touchedId == -1) {
                     break;
                 }
-                Piece b = mBlocks.get(touchedId);
+                Piece b = mPieces.get(touchedId);
                 int newTop = Math.round((float) b.getRect().top / mCellHeight) * mCellHeight;
                 int newLeft = Math.round((float) b.getRect().left / mCellWidth) * mCellWidth;
                 b.getRect().offsetTo(newLeft, newTop);
@@ -147,7 +144,7 @@ public class Klotski extends SurfaceView implements SurfaceHolder.Callback {
                     //游戏结束！
                     MainActivity.levels[currentLevel -1]="1";
                     AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                    builder.setTitle("恭喜完成本次冒险！").setMessage("获得神秘碎片 x 1!").setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                    builder.setTitle("恭喜完成本次冒险！").setMessage("获得神秘碎片 x 1~").setPositiveButton("ok", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                         }
@@ -158,11 +155,10 @@ public class Klotski extends SurfaceView implements SurfaceHolder.Callback {
                 touchedId = -1;
                 break;
             case MotionEvent.ACTION_MOVE:
-//                L.i(this, "ACTION_MOVE");
                 if (touchedId == -1) {
                     break;
                 }
-                Piece block = mBlocks.get(touchedId);
+                Piece block = mPieces.get(touchedId);
                 Rect rect = new Rect(block.getRect().left,
                         block.getRect().top,
                         block.getRect().right,
@@ -171,7 +167,7 @@ public class Klotski extends SurfaceView implements SurfaceHolder.Callback {
                 rect.offsetTo(newX, rect.top);
                 if (canMove(rect, touchedId)) {
                     block.setRect(rect);
-                    mBlocks.set(touchedId, block);
+                    mPieces.set(touchedId, block);
                 }
                 rect = new Rect(block.getRect().left,
                         block.getRect().top,
@@ -181,7 +177,7 @@ public class Klotski extends SurfaceView implements SurfaceHolder.Callback {
                 rect.offsetTo(rect.left, newY);
                 if (canMove(rect, touchedId)) {
                     block.setRect(rect);
-                    mBlocks.set(touchedId, block);
+                    mPieces.set(touchedId, block);
                 }
                 break;
             default:
@@ -196,7 +192,7 @@ public class Klotski extends SurfaceView implements SurfaceHolder.Callback {
     public void surfaceCreated(SurfaceHolder holder) {
         mDrawThread = new DrawThread(mSurfaceHolder);
         mDrawThread.startDrawing();
-        mDrawThread.setBlocks(mBlocks);
+        mDrawThread.setPiece(mPieces);
     }
 
     @Override
@@ -210,8 +206,8 @@ public class Klotski extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     protected int getTouchedBlock(int x, int y) {
-        for (int i = 0; i < mBlocks.size(); i++) {
-            if (mBlocks.get(i).getRect().contains(x, y)) {
+        for (int i = 0; i < mPieces.size(); i++) {
+            if (mPieces.get(i).getRect().contains(x, y)) {
                 return i;
             }
         }
@@ -219,8 +215,8 @@ public class Klotski extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     protected boolean canMove(Rect rect, int ignore) {
-        for (int i = 0; i < mBlocks.size(); i++) {
-            if ((i != ignore && rect.intersect(mBlocks.get(i).getRect())) || !mRect.contains(rect)) {
+        for (int i = 0; i < mPieces.size(); i++) {
+            if ((i != ignore && rect.intersect(mPieces.get(i).getRect())) || !mRect.contains(rect)) {
                 return false;
             }
         }
@@ -228,9 +224,9 @@ public class Klotski extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public void setBlocks(List<Piece> blocks) {
-        mBlocks = blocks;
-        if (mBlocks != null) {
-            for (Piece block : mBlocks) {
+        mPieces = blocks;
+        if (mPieces != null) {
+            for (Piece block : mPieces) {
                 if (block.getDrawable() == null) {
                     block.setDrawable(resolveDrawable(block.getType()));
                 }
@@ -240,18 +236,18 @@ public class Klotski extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     protected void updateBlocks() {
-        if (mBlocks != null) {
-            for (int i = 0; i < mBlocks.size(); i++) {
-                Piece block = mBlocks.get(i);
+        if (mPieces != null) {
+            for (int i = 0; i < mPieces.size(); i++) {
+                Piece block = mPieces.get(i);
                 block.getRect().left = block.getX() * mCellWidth;
                 block.getRect().top = block.getY() * mCellWidth;
                 block.getRect().right = (block.getX() + block.getType().width()) * mCellWidth;
                 block.getRect().bottom = (block.getY() + block.getType().height()) * mCellHeight;
-                mBlocks.set(i, block);
+                mPieces.set(i, block);
             }
         }
         if (mDrawThread != null) {
-            mDrawThread.setBlocks(mBlocks);
+            mDrawThread.setPiece(mPieces);
         }
     }
 
@@ -300,8 +296,8 @@ public class Klotski extends SurfaceView implements SurfaceHolder.Callback {
             running = false;
         }
 
-        public void setBlocks(List<Piece> blocks) {
-            this.mBlocks = blocks;
+        public void setPiece(List<Piece> piece) {
+            this.mBlocks = piece;
         }
 
         @Override
